@@ -2,11 +2,32 @@ package com.montreal.angularjs.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
+
+@Entity
 public class Contato {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@NotEmpty
 	private String nome;
+
+	@NotEmpty
 	private String telefone;
+
+	@NotEmpty
 	private Date data;
+
+	@ManyToOne
+	@JoinColumn(name = "operadora_id")
 	private Operadora operadora;
 
 	public Contato() {
